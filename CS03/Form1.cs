@@ -58,6 +58,7 @@ namespace CS03
             
             string path = System.IO.Path.GetDirectoryName(Application.ExecutablePath);
             string to = "";
+            bool isExisting = false;
 
             try
             {
@@ -65,6 +66,15 @@ namespace CS03
 
                 string current_user = Environment.UserName;
                 to = "C:\\Users\\" + current_user + "\\AppData\\Local\\Temp\\CS03Demo.txt";
+
+                if (!File.Exists(to))
+                {
+                    isExisting = false;
+                }
+                else
+                {
+                    isExisting = true;
+                }
 
                 File.Copy(from, to, true);
 
@@ -77,6 +87,9 @@ namespace CS03
             }
             finally
             {
+
+                MessageBox.Show("isExisting: "+ isExisting);
+                
                 if (File.Exists(to))
                 {
                     try
